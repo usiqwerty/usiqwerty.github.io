@@ -1,2 +1,4 @@
 <B>Hello World!</B>
-<? phpinfo() ?>
+<?
+echo "Hello world";
+?>
