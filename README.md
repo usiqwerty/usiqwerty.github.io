@@ -10,7 +10,7 @@
 <center><ul>
 <li>Home</li>
 <li><a href="/avrbook.htm">AvrBook</a></li>
-<li<a href="/about.htm">About</about></li>
+<li><a href="/about.htm">About</about></li>
 
 </ul></center>
 </body>
