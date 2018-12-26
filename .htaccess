@@ -1,1 +1,2 @@
 Redirect / /index.htm
+ErrorDocument 404 /404.htm
