@@ -8,9 +8,9 @@
 <body onLoad="onl();">
 <header>#<h1>Welcome to usiqwerty's web-page!</h1></header>
 <center><ul>
-<li>My favourites</li>
-<li>AvrBook</li>
-<li>About</li>
+<li>Home</li>
+<li><a href="/avrbook.htm">AvrBook</a></li>
+<li<a href="/about.htm">About</about></li>
 
 </ul></center>
 </body>
