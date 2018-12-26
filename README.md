@@ -7,7 +7,8 @@
 </head>
 <body onLoad="onl();">
 <header>#<h1>Welcome to usiqwerty's web-page!</h1></header>
-<center><ul>
+<center>
+  <ul>
 <li>Home</li>
 <li><a href="/avrbook.htm">AvrBook</a></li>
 <li><a href="/about.htm">About</about></li>
