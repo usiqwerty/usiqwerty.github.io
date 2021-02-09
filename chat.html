@@ -1,0 +1,43 @@
+<body>
+<p>
+<h2>Client side</2>
+import socket
+ip='localhost'		#server ip
+
+sock = socket.socket()
+sock.connect((ip, 9091))
+sock.send(bytes('Connected!', 'utf-8'))
+
+while True:
+	data = sock.recv(1024)
+	if data.decode('utf-8').__contains__('/exit'):
+		break
+	print (data.decode('utf-8'))
+	sock.send(bytes(input("You:"),'utf-8'))
+sock.close()
+</p>
+
+<p>
+<h2>Server side</2>
+import socket
+
+ip='localhost' #our ip
+
+sock = socket.socket()
+sock.bind((ip, 9091))
+sock.listen(10)
+conn, addr = sock.accept()
+
+
+while True:
+	data = conn.recv(1024)
+	if not data:
+		break
+	if data.decode('utf-8').__contains__('/exit'):
+		break
+	print(data.decode('utf-8'))
+	conn.send(bytes(input("You: "), 'utf-8'))
+
+conn.close()
+</p>
+</body>
