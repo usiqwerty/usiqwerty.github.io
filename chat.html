@@ -1,43 +1,42 @@
 <body>
 <p>
 <h2>Client side</h2><br>
-import socket<br>
-ip='localhost'<br>
-#server ip<br>
+# Thanks to @stevenreddie<br>
+import socket, time<br>
 <br>
-sock = socket.socket()<br>
-sock.connect((ip, 9091))<br>
-sock.send(bytes('Connected!', 'utf-8'))<br>
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) # UDP<br>
 <br>
+client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)<br>
+client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)<br>
+<br>
+client.bind(('',12345))<br>
+client.sendto(b"I have joined the chat!", ('<broadcast>', 12345))<br>
+client.recvfrom(1024)<br>
+client.sendto(bytes(input("You: "),'utf-8'), ('<broadcast>', 12345))<br>
+a=0<br>
 while True:<br>
-	data = sock.recv(1024)<br>
-	if data.decode('utf-8').__contains__('/exit'):<br>
+	if a!=1:<br>
+		client.settimeout(0.1)<br>
+		try:<br>
+			data, addr = client.recvfrom(1024)<br>
+			print (addr[0], ": ", data.decode('utf-8'))<br>
+		except socket.timeout:<br>
+			client.settimeout(None)<br>
+	a=0<br>
+	msg=input("You: ")<br>
+	if msg=="/exit":<br>
 		break<br>
-	print (data.decode('utf-8'))<br>
-	sock.send(bytes(input("You:"),'utf-8'))<br>
-sock.close()<br>
-</p>
-
-<p>
-<h2>Server side</h2><br>
-import socket<br>
-<br>
-ip='localhost' #our ip<br>
-<br>
-sock = socket.socket()<br>
-sock.bind((ip, 9091))<br>
-sock.listen(10)<br>
-conn, addr = sock.accept()<br>
-<br>
-while True:<br>
-	data = conn.recv(1024)<br>
-	if not data:<br>
-		break<br>
-	if data.decode('utf-8').__contains__('/exit'):<br>
-		break<br>
-	print(data.decode('utf-8'))<br>
-	conn.send(bytes(input("You: "), 'utf-8'))<br>
-<br>
-conn.close()<br>
+	if msg!="":<br>
+		client.sendto(bytes(msg,'utf-8'), ('<broadcast>', 12345))<br>
+	else:<br>
+		client.settimeout(0.1)<br>
+		try:<br>
+			data, addr = client.recvfrom(1024)<br>
+			print (addr[0], ": ", data.decode('utf-8'))<br>
+		except socket.timeout:<br>
+			client.settimeout(None)<br>
+			a=1<br>
+			continue<br>
+client.close()<br>
 </p>
 </body>
