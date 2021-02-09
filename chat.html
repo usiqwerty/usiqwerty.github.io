@@ -1,44 +1,44 @@
 <body>
 <p>
 <h2>Client side</h2><br>
-# Thanks to @stevenreddie<br>
-# And thanks to this Github Gist:
-#	https://gist.github.com/ninedraft/7c47282f8b53ac015c1e326fffb664b5<br>
-import socket, time<br>
-<br>
-client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) # UDP<br>
-<br>
-client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)<br>
-client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)<br>
-<br>
-client.bind(('',12345))<br>
-client.sendto(b"I have joined the chat!", ('<broadcast>', 12345))<br>
-client.recvfrom(1024)<br>
-client.sendto(bytes(input("You: "),'utf-8'), ('<broadcast>', 12345))<br>
-a=0<br>
-while True:<br>
-	if a!=1:<br>
-		client.settimeout(0.1)<br>
-		try:<br>
-			data, addr = client.recvfrom(1024)<br>
-			print (addr[0], ": ", data.decode('utf-8'))<br>
-		except socket.timeout:<br>
-			client.settimeout(None)<br>
-	a=0<br>
-	msg=input("You: ")<br>
-	if msg=="/exit":<br>
-		break<br>
-	if msg!="":<br>
-		client.sendto(bytes(msg,'utf-8'), ('<broadcast>', 12345))<br>
-	else:<br>
-		client.settimeout(0.1)<br>
-		try:<br>
-			data, addr = client.recvfrom(1024)<br>
-			print (addr[0], ": ", data.decode('utf-8'))<br>
-		except socket.timeout:<br>
-			client.settimeout(None)<br>
-			a=1<br>
-			continue<br>
-client.close()<br>
+<pre>
+# Thanks to @stevenreddie
+import socket, time
+
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) # UDP
+
+client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+client.bind(('',12345))
+client.sendto(b"I have joined the chat!", ('<broadcast>', 12345))
+client.recvfrom(1024)
+client.sendto(bytes(input("You: "),'utf-8'), ('<broadcast>', 12345))
+a=0
+while True:
+	if a!=1:
+		client.settimeout(0.1)
+		try:
+			data, addr = client.recvfrom(1024)
+			print (addr[0], ": ", data.decode('utf-8'))
+		except socket.timeout:
+			client.settimeout(None)
+	a=0
+	msg=input("You: ")
+	if msg=="/exit":
+		break
+	if msg!="":
+		client.sendto(bytes(msg,'utf-8'), ('<broadcast>', 12345))
+	else:
+		client.settimeout(0.1)
+		try:
+			data, addr = client.recvfrom(1024)
+			print (addr[0], ": ", data.decode('utf-8'))
+		except socket.timeout:
+			client.settimeout(None)
+			a=1
+			continue
+client.close()
+</pre>
 </p>
 </body>
