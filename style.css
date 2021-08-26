@@ -9,6 +9,9 @@ a{
 tr{
 	transform:rotate(-0.5deg);
 }
+marquee{
+	transform:rotate(0.5deg);
+}
 tr#text{
 	transform:none;
 }
