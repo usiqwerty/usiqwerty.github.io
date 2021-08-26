@@ -1,5 +1,11 @@
 a:hover{font-style:italic}
-a{text-decoration:none;}
+a.top{
+	color:#4444FF;
+}
+a{
+	color:#000000;
+	text-decoration:none;
+}
 tr{
-	transform:rotate(-1deg);
+	transform:rotate(-0.5deg);
 }
