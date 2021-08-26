@@ -1,0 +1,5 @@
+a:hover{font-style:italic}
+a{text-decoration:none;}
+tr{
+	transform:rotate(-1deg);
+}
