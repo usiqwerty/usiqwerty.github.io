@@ -1,0 +1,51 @@
+body{
+	background-color:#DDFFAA;
+}
+input, button{
+	/*height:5%;*/
+	border-color:#CCC;
+	border-style:solid;
+	border-radius:5px;
+	background-color:#FFF;
+}
+input:focus, button:active{
+	border-color:#AAA;
+}
+button{
+	background-color:#EFEFEF;
+	border-style:dotted;
+}
+button:hover{
+	border-style:solid;
+}
+body#success{
+	animation: bg 10s infinite;
+        color:white;    
+}
+@keyframes bg{
+	from{
+             	background-color: red;  
+        }
+	30%{
+            	background-color: yellow;       
+        }
+	50%{
+            	background-color: green;        
+        }       
+        66%{
+            	background-color: blue;         
+        }
+	to {
+            	background-color: red;  
+        }
+}
+form#login{
+	width:35%;
+	margin-top:10%
+}
+input{
+	width:100%;
+}
+button{
+	width:50%;
+}

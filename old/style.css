@@ -1,0 +1,17 @@
+a:hover{font-style:italic}
+a.top{
+	color:#4444FF;
+}
+a{
+	color:#000000;
+	text-decoration:none;
+}
+tr{
+	transform:rotate(-0.5deg);
+}
+marquee{
+	transform:rotate(0.5deg);
+}
+tr#text{
+	transform:none;
+}
