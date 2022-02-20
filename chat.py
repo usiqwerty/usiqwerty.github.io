@@ -82,7 +82,7 @@ def rec():
 
 t=threading.Thread(target=rec)
 t.start()
-print("megchat v1.0")
+print("megchat v1.1")
 print(f"You're {you}")
 
 server.sendto(b"LOGIN_MSG", ('<broadcast>', 1234))
